@@ -57,9 +57,9 @@ def getspotifydata():
 
     artisthtml += "</ol></div>"
 
-    trackhtml = "<div style='float: left; width: 300px;'>Track<ol>"
+    trackhtml = "<div style='float: left; width: 600px;'>Track<ol>"
     for a in tracks:
-        trackhtml += "<li>" + a["name"] + "</li>"
+        trackhtml += "<li>" + a["name"] + " by " + a["artists"][0]["name"] + "</li>"
 
     artisthtml += "</ol></div>"
 

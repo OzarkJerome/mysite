@@ -49,18 +49,27 @@ def getspotifydata():
 
     artists = gettopartists(token_info["access_token"])
 
-    artisthtml = "<ol>"
+    tracks = gettoptracks(token_info["access_token"])
+
+    artisthtml = "<div style='float: left; width: 300px;'>Artist<ol>"
     for a in artists:
         artisthtml += "<li>" + a["name"] + "</li>"
 
-    artisthtml += "</ol"
+    artisthtml += "</ol></div>"
 
-    return artisthtml
+    trackhtml = "<div style='float: left; width: 300px;'>Track<ol>"
+    for a in tracks:
+        trackhtml += "<li>" + a["name"] + "</li>"
+
+    artisthtml += "</ol></div>"
+
+
+    return artisthtml + trackhtml
 
 def gettopartists(token):
     headers = {"Authorization": f"Bearer {token}"}
 
-    response = requests.get(API_BASE_URL + "me/top/artists", headers=headers)
+    response = requests.get(API_BASE_URL + "me/top/artists?limit=50", headers=headers)
 
     topArtists = response.json()
 
@@ -69,6 +78,19 @@ def gettopartists(token):
     artists.sort(key=sortpopularity, reverse=True)
 
     return artists
+
+def gettoptracks(token):
+    headers = {"Authorization": f"Bearer {token}"}
+
+    response = requests.get(API_BASE_URL + "me/top/tracks?limit=50", headers=headers)
+
+    topTracks = response.json()
+
+    tracks = topTracks["items"]
+
+    ##artists.sort(key=sortpopularity, reverse=True)
+
+    return tracks
 
 
 def sortpopularity(e):

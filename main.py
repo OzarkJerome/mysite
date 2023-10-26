@@ -47,15 +47,31 @@ def getspotifydata():
         response = requests.post(TOKEN_URL, data=req_body)
         token_info = response.json()
 
+    artists = gettopartists(token_info["access_token"])
 
+    artisthtml = "<ol>"
+    for a in artists:
+        artisthtml += "<li>" + a["name"] + "</li>"
 
-    return gettopartists(token_info["access_token"])
+    artisthtml += "</ol"
+
+    return artisthtml
 
 def gettopartists(token):
     headers = {"Authorization": f"Bearer {token}"}
 
     response = requests.get(API_BASE_URL + "me/top/artists", headers=headers)
 
-    playlists = response.json()
+    topArtists = response.json()
 
-    return jsonify(playlists)
+    artists = topArtists["items"]
+
+    artists.sort(key=sortpopularity, reverse=True)
+
+    return artists
+
+
+def sortpopularity(e):
+  return e['popularity']
+
+

@@ -88,7 +88,7 @@ def gettoptracks(token):
 
     tracks = topTracks["items"]
 
-    ##artists.sort(key=sortpopularity, reverse=True)
+    tracks.sort(key=sortpopularity, reverse=True)
 
     return tracks
 

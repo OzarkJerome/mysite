@@ -10,7 +10,7 @@ AUTH_URL = "https://accounts.spotify.com/authorize"
 TOKEN_URL = "https://accounts.spotify.com/api/token"
 API_BASE_URL = "https://api.spotify.com/v1/"
 
-REDIRECT_URL = "http://127.0.0.1:5000/getspotifydata"
+REDIRECT_URL = "https://jeromebeej.pythonanywhere.com/getspotifydata"
 CLIENT_ID = "f0ec4ee27a08406b99511ea8d7997743"
 CLIENT_SECRET = "3e24194e95d14d39a08ea1841d4e31a8"
 
